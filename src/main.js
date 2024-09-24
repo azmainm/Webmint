@@ -18,7 +18,6 @@ library.add(faGithub, faLinkedin);
 const app = createApp(App);
 app.use(router);
 // app.use(Vue3Modal);
-app.component('font-awesome-icon', FontAwesomeIcon);  // Register Font Awesome component globally
-
+app.component('font-awesome-icon', FontAwesomeIcon);  
 AOS.init();
 app.mount('#app');
