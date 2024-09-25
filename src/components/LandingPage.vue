@@ -1,41 +1,42 @@
 <!-- src/components/LandingPage.vue -->
 <template>
-    <div>
-    
-      <!-- Section 1 -->
-      <section class="h-screenflex flex-col justify-center items-center text-center bg-gradient-to-r from-gray-800 to-pink-900 text-white">
-        <h1 class="text-5xl font-bold">Large Header Text</h1>
-        <p class="mt-4 text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <button class="mt-8 bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-6 rounded">
-          Initiate Transactions
-        </button>
-      </section>
+  <div class="overflow-x-hidden">
+    <!-- Section 1 -->
+    <section class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-white to-pink-100 text-gray-800">
+      <h1 class="text-6xl font-bold px-3"><span class="text-blue-800">Empower</span> Your Wallet</h1>
+      <p class="mt-4 font-sans text-xl px-4 text-gray-800">Seamless transfers and payments</p>
+      <p class="font-sans text-xl px-4 font-medium text-blue-800">On. The. Web</p>
+      <button class="mt-4  bg-blue-600 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-md shadow-gray-300">
+        Initiate Transaction
+      </button>
+    </section>
 
-  
-      <!-- Section 2 -->
-      <section class="flex items-center justify-between px-12 py-16 bg-gray-800 text-white">
-        <div class="w-1/2" data-aos="fade-right">
-          <h2 class="text-4xl font-bold text-green-700">Large Header Text</h2>
-          <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-        <div class="w-1/2" data-aos="fade-left">
-          <img src="@/assets/landing1.png" alt="Landing Image" class="w-full" />
-        </div>
-      </section>
-  
-      <!-- Section 3 -->
-      <section class="flex items-center justify-between px-12 py-16 bg-gray-900 text-white">
-        <div class="w-1/2" data-aos="fade-right">
-          <img src="@/assets/landing2.png" alt="Landing Image" class="w-full" />
-        </div>
-        <div class="w-1/2" data-aos="fade-left">
-          <h2 class="text-4xl font-bold">Large Header Text</h2>
-          <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-      </section>
-    </div>
-  </template>
-  
+    <!-- Section 2 -->
+    <section class="flex flex-col sm:flex-row items-center justify-between py-16 bg-gradient-to-r from-white to-pink-100 text-gray-800">
+      <div class="w-full sm:w-1/2 text-left ml-14">
+        <h2 class="text-4xl font-bold text-blue-800" data-aos="fade-right">Fast Transfers & Effortless Payments</h2>
+        <p class="mt-4 pr-8">Sit back and relax—send money and pay bills in seconds, all from the comfort of your couch. Enjoy a seamless experience that makes managing your finances a breeze!</p>
+      </div>
+      <div class="w-full sm:w-3/4 text-right">
+        <img src="@/assets/landing1.png" alt="Landing Image" class="w-full sm:w-3/4 object-cover" data-aos="fade-left"/>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="flex flex-col sm:flex-row items-center justify-between py-16 bg-gradient-to-r from-white to-pink-100 text-gray-800">
+      <div class="w-full sm:w-3/4">
+        <img src="@/assets/landing2.png" alt="Landing Image" class="w-full sm:w-3/4 object-cover" data-aos="fade-right"/>
+      </div>
+      <div class="w-full sm:w-1/2  ml-14">
+        <h2 class="text-4xl font-bold text-blue-800" data-aos="fade-right">Gain Insight into Your Finances</h2>
+        <p class="mt-4 pr-8">Stay on top of your spending with real-time transaction tracking, detailed financial management charts, and analytics. Optimize your budget and make informed decisions for a secure financial future.</p>
+      </div>
+    </section>
+  </div>
+</template>
+
+
+
   <script>
   import AOS from 'aos';
   import 'aos/dist/aos.css';
@@ -45,4 +46,3 @@
     }
   };
   </script>
-  
