@@ -3,12 +3,16 @@
   <div class="overflow-x-hidden">
     <!-- Section 1 -->
     <section class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-white to-pink-100 text-gray-800">
-      <h1 class="text-6xl font-bold px-3"><span class="text-blue-800">Empower</span> Your Wallet</h1>
+      <h1 class="text-6xl font-bold px-3 float"><span class="text-blue-900">Webmint</span> Connects Finance</h1>
       <p class="mt-4 font-sans text-xl px-4 text-gray-800">Seamless transfers and payments</p>
-      <p class="font-sans text-xl px-4 font-medium text-blue-800">On. The. Web</p>
-      <button @click="goToTransferPage" class="mt-4 bg-blue-600 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-md shadow-gray-300">
+      <p class="font-sans text-xl px-4 font-medium text-blue-800">on. the. web</p>
+      <div>
+        <button @click="goToTransferPage" class="mt-4 mr-4 bg-blue-900 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-md shadow-gray-300">
         Initiate Transaction
       </button>
+      <span><font-awesome-icon icon="fa-solid fa-money-bill-transfer" class="text-3xl text-blue-900 mb-2" /></span>
+      </div>
+      
     </section>
 
     <!-- Section 2 -->
@@ -39,8 +43,16 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useRouter } from 'vue-router';  // Import useRouter for navigation
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faMoneyBillTransfer);
 
 export default {
+  components:{
+    FontAwesomeIcon,
+  },
   setup() {
     const router = useRouter();  // Set up router
 
@@ -57,3 +69,18 @@ export default {
   }
 };
 </script>
+
+<style>
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Adjust the value to control the floating height */
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite; /* Adjust duration as needed */
+}
+</style>
