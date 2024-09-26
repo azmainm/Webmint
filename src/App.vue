@@ -1,74 +1,69 @@
-<!--App.vue-->
 <template>
   <div id="app">
-    <NavbarLoggedIn v-if="isLoggedIn" @log-out="handleLogout" />
-    <NavbarLoggedOut v-else @open-login="showLoginModal" @open-signup="showSignupModal" />
+    <!-- Navbar changes based on whether the user is logged in or not -->
+    <!-- <NavbarLoggedOut
+      v-if="!isLoggedIn"
+      @open-login="showLoginModal"
+      @open-signup="showSignupModal"
+    />
+    <NavbarLoggedIn v-else /> -->
 
-    <!-- Modals -->
+    <!-- Modals for Login and Signup -->
     <LoginModal
       v-if="showLogin"
-      @login-success="handleLogin"
-      @openSignup="showSignupModal"
       @closeModal="showLogin = false"
+      @login-success="handleLoginSuccess"
+      @open-signup="showSignupModal"
     />
     <SignupModal
       v-if="showSignup"
-      @signup-success="handleSignup"
-      @openLogin="showLoginModal"
       @closeModal="showSignup = false"
+      @open-login="showLoginModal"
     />
 
-    <!-- Main content -->
+    <!-- Main content rendered by router -->
     <router-view />
   </div>
 </template>
 
 <script>
-import NavbarLoggedOut from './components/NavbarLoggedOut.vue';
-import NavbarLoggedIn from './components/NavbarLoggedIn.vue';
+// import NavbarLoggedOut from './components/NavbarLoggedOut.vue';
+// import NavbarLoggedIn from './components/NavbarLoggedIn.vue';
 import LoginModal from './components/LoginModal.vue';
 import SignupModal from './components/SignupModal.vue';
 
 export default {
   name: 'App',
   components: {
-    NavbarLoggedOut,
-    NavbarLoggedIn,
+    // NavbarLoggedOut,
+    // NavbarLoggedIn,
     LoginModal,
     SignupModal,
   },
   data() {
     return {
-      isLoggedIn: false, // User login state
-      showLogin: false,  // Controls login modal visibility
-      showSignup: false, // Controls signup modal visibility
+      isLoggedIn: false,   // State for logged-in status
+      showLogin: false,    // State for Login modal visibility
+      showSignup: false,   // State for Signup modal visibility
     };
   },
   methods: {
+    // Show login modal
     showLoginModal() {
       this.showLogin = true;
       this.showSignup = false;
     },
+    // Show signup modal
     showSignupModal() {
       this.showSignup = true;
       this.showLogin = false;
     },
-    handleLogin() {
+    // Handle login success
+    handleLoginSuccess() {
       this.isLoggedIn = true;
       this.showLogin = false;
+      this.$router.push('/transferpage');  // Navigate to homepage
     },
-    handleSignup() {
-      this.isLoggedIn = true;
-      this.showSignup = false;
-    },
-    handleLogout() {
-      this.isLoggedIn = false;
-      localStorage.removeItem('user'); // Clear user data when logged out
-    },
-  },
-  mounted() {
-    // Check if the user is logged in when the app loads
-    this.isLoggedIn = !!localStorage.getItem("user");
   },
 };
 </script>

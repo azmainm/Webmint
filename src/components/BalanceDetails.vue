@@ -1,3 +1,4 @@
+<!-- components/BalanceDetails.vue -->
 <template>
     <div class="balance-card">
       <h3 class="text-xl mb-2">{{ userName }}</h3>

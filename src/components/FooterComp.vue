@@ -9,7 +9,7 @@
       </a>
       <div class="cv-download">
         <a href="/path/to/your-cv.pdf" download>
-          <button>Download CV</button>
+          <button class="bg-blue-800 hover:bg-blue-600 ">Download CV</button>
         </a>
       </div>
     </div>
@@ -49,8 +49,7 @@ footer {
 }
 
 button {
-  padding: 5px 10px;
-  background-color: #ff0084;
+  padding: 5px 10px; 
   color: white;
   border: none;
   border-radius: 5px;

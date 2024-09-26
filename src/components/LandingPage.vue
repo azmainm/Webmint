@@ -1,12 +1,12 @@
 <!-- src/components/LandingPage.vue -->
-<template>
+<template> 
   <div class="overflow-x-hidden">
     <!-- Section 1 -->
     <section class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-white to-pink-100 text-gray-800">
       <h1 class="text-6xl font-bold px-3"><span class="text-blue-800">Empower</span> Your Wallet</h1>
       <p class="mt-4 font-sans text-xl px-4 text-gray-800">Seamless transfers and payments</p>
       <p class="font-sans text-xl px-4 font-medium text-blue-800">On. The. Web</p>
-      <button class="mt-4  bg-blue-600 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-md shadow-gray-300">
+      <button @click="goToTransferPage" class="mt-4 bg-blue-600 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-md shadow-gray-300">
         Initiate Transaction
       </button>
     </section>
@@ -27,7 +27,7 @@
       <div class="w-full sm:w-3/4">
         <img src="@/assets/landing2.png" alt="Landing Image" class="w-full sm:w-3/4 object-cover" data-aos="fade-right"/>
       </div>
-      <div class="w-full sm:w-1/2  ml-14">
+      <div class="w-full sm:w-1/2 ml-14">
         <h2 class="text-4xl font-bold text-blue-800" data-aos="fade-right">Gain Insight into Your Finances</h2>
         <p class="mt-4 pr-8">Stay on top of your spending with real-time transaction tracking, detailed financial management charts, and analytics. Optimize your budget and make informed decisions for a secure financial future.</p>
       </div>
@@ -35,14 +35,25 @@
   </div>
 </template>
 
+<script>
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useRouter } from 'vue-router';  // Import useRouter for navigation
 
+export default {
+  setup() {
+    const router = useRouter();  // Set up router
 
-  <script>
-  import AOS from 'aos';
-  import 'aos/dist/aos.css';
-  export default {
-    mounted() {
-      AOS.init(); 
-    }
-  };
-  </script>
+    const goToTransferPage = () => {
+      router.push({ name: 'TransferPage' });  // Navigate to TransferPage
+    };
+
+    return {
+      goToTransferPage
+    };
+  },
+  mounted() {
+    AOS.init();
+  }
+};
+</script>

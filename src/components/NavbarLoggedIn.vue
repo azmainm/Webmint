@@ -1,11 +1,11 @@
 <!-- src/components/NavbarLoggedIn.vue -->
 <template>
-  <nav class="w-full flex justify-between items-center px-6 py-4 bg-white text-gray-800">
+  <nav class="w-full flex justify-between items-center px-6 py-4 bg-gradient-to-r from-white to-pink-100 text-gray-800">
     <img src="@/assets/logo.png" alt="Logo" class="h-10" />
     <div class="flex space-x-4">
-      <router-link to="/" class="hover:text-pink-500">Home</router-link>
-      <router-link to="/transferpage" class="hover:text-pink-500">Transfer</router-link>
-      <button @click="logOut" class="hover:text-pink-500">Log Out</button>
+      <router-link to="/" class="hover:text-blue-700 hover:line-through cursor-pointer text-gray-800 font-medium">Home</router-link>
+      <router-link to="/transferpage" class="hover:text-blue-700 hover:line-through cursor-pointer text-gray-800 font-medium">Transfer</router-link>
+      <button @click="logOut" class="hover:text-blue-700 hover:line-through cursor-pointer text-gray-800 font-medium">Log Out</button>
     </div>
   </nav>
 </template>

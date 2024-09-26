@@ -1,43 +1,48 @@
 <!--components/SignupModal.vue-->
 
 <template>
-    <div v-if="isVisible" class="modal" @click.self="closeModal">
-      <div class="modal-content">
-        <h2 class="text-2xl mb-4">Sign Up</h2>
-        <input v-model="name" type="text" placeholder="Name" class="input mb-4"/>
-        <input v-model="username" type="text" placeholder="Username" class="input mb-4"/>
-        <input v-model="password" type="password" placeholder="Password" class="input mb-4"/>
-        <button @click="signup" class="btn">Sign Up</button>
-        <p @click="openLoginModal" class="text-sm mt-4 cursor-pointer text-center text-pink-500">Already have an account? Login</p>
-      </div>
+  <div class="modal" @click.self="closeModal">
+    <div class="modal-content">
+      <h2 class="text-2xl mb-4 font-medium text-center">Sign Up</h2>
+      <input v-model="username" type="text" placeholder="Username" class="input mb-4"/>
+      <input v-model="email" type="email" placeholder="Email" class="input mb-4"/>
+      <input v-model="password" type="password" placeholder="Password" class="input mb-4"/>
+      <button @click="signup" class="btn text-center bg-blue-800 hover:bg-blue-600">Sign Up</button>
+      <p @click="openLoginModal" class="text-sm mt-4 cursor-pointer text-center text-gray-700">
+        Already have an account? 
+        <span class="underline text-blue-800 hover:text-blue-600">Login</span>
+      </p>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    props: ['isVisible'], // Pass visibility state from parent
-    data() {
-      return {
-        name: '',
-        username: '',
-        password: '',
-      };
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'SignupModal',
+  data() {
+    return {
+      username: '',
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    signup() {
+      if (this.username && this.email && this.password) {
+        // Emit a signup-success event if necessary
+        this.$emit('closeModal');  // Close modal after signup
+      }
     },
-    methods: {
-      signup() {
-        if (this.name && this.username && this.password) {
-          this.$emit('signup-success');
-        }
-      },
-      openLoginModal() {
-        this.$emit('openLogin');
-      },
-      closeModal() {
-        this.$emit('closeModal');
-      },
+    openLoginModal() {
+      this.$emit('open-login');
     },
-  };
-  </script>
+    closeModal() {
+      this.$emit('closeModal');
+    },
+  },
+};
+</script>
+
   
   <style scoped>
   /* Reusing styles from LoginModal for consistency */
@@ -58,7 +63,7 @@
   .modal-content {
     background-color: white;
     padding: 20px;
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     width: 100%;
@@ -75,7 +80,6 @@
   .btn {
     width: 100%;
     padding: 10px;
-    background: #ff3366;
     color: white;
     border: none;
     border-radius: 6px;
