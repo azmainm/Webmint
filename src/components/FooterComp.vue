@@ -9,7 +9,7 @@
       </a>
       <div class="cv-download">
         <!-- Updated CV Download Button with target and rel attributes -->
-        <a href="https://drive.google.com/uc?export=download&id=1QKPPCGGeYQWREMhS-r6U8ShT4zOrchcr" target="_blank" rel="noopener noreferrer" download="Azmain_Morshed_CV.pdf">
+        <a href="https://drive.google.com/uc?export=download&id=1EC07NmQCBoFmmAoGrRAoDYM_iNI93GsS" target="_blank" rel="noopener noreferrer" download="Azmain_Morshed_CV.pdf">
           <button class="bg-gray-900 hover:bg-pink-600">Grab my Resume <span><font-awesome-icon icon="fa-solid fa-download" class="text-xl text-white" /></span></button>
         </a>
       </div>
