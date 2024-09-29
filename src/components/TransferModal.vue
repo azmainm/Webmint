@@ -64,7 +64,6 @@ export default {
       // Store the transaction in local storage
       const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
       transactions.push(newTransaction);
-      console.log('Transactions:', transactions);
       localStorage.setItem('transactions', JSON.stringify(transactions));
 
 

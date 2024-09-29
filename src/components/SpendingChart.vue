@@ -89,7 +89,6 @@ export default {
   this.chartData.datasets[0].data = groupedTransferTransactions.map(t => t.amount);
   this.chartData.datasets[1].data = groupedPaymentTransactions.map(t => t.amount);
 
-  console.log('Chart data:', this.chartData);
 },
 
 },

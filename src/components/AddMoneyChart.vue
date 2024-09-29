@@ -67,7 +67,6 @@
   this.chartData.labels = groupedAddTransactions.map(t => t.date);
   this.chartData.datasets[0].data = groupedAddTransactions.map(t => t.amount);
 
-  console.log('Chart data:', this.chartData);
     },
 
     },
