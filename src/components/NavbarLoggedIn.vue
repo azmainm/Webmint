@@ -3,7 +3,7 @@
   <nav class="w-full flex justify-between items-center px-6 py-4 bg-gradient-to-r from-white to-pink-100 text-gray-800">
     <img src="@/assets/logo.png" alt="Logo" class="h-10" />
     <div class="flex space-x-4">
-      <router-link to="/" class="hover:text-blue-700 hover:line-through cursor-pointer text-gray-800 font-medium">Home</router-link>
+      <router-link to="/homeloggedin" class="hover:text-blue-700 hover:line-through cursor-pointer text-gray-800 font-medium">Home</router-link>
       <router-link to="/transferpage" class="hover:text-blue-700 hover:line-through cursor-pointer text-gray-800 font-medium">Transfer</router-link>
       <button @click="logOut" class="hover:text-blue-700 hover:line-through cursor-pointer text-gray-800 font-medium">Log Out</button>
     </div>

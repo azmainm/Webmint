@@ -8,7 +8,7 @@
         <div class="balance-card shadow-md bg-gradient-to-r from-gray-800 to-blue-800 w-full max-w-sm text-center p-6 rounded-md mb-20">
           <h3 class="text-2xl font-light mb-1 text-gray-200">{{ userName }}</h3>
           <h2 class="text-3xl font-medium text-gray-200">
-            <span class="font-semibold">Balance: </span>৳ {{ balance }}
+            <span class="font-semibold">Balance: </span>৳ {{ balance }} <span><font-awesome-icon icon="fa-solid fa-eye" class="text-2xl text-gray-200 hover:text-gray-400" /><font-awesome-icon icon="fa-solid fa-eye-slash" class="text-2xl text-gray-200 hover:text-gray-400 " /></span>
           </h2>
         </div>
 
@@ -66,7 +66,7 @@
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faMoneyBillTransfer, faCartShopping, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMoneyBillTransfer, faCartShopping, faPlus, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import NavbarLoggedIn from '../components/NavbarLoggedIn.vue';
 import SpendingChart from '../components/SpendingChart.vue';
 import AddMoneyChart from '../components/AddMoneyChart.vue';
@@ -76,7 +76,7 @@ import AddMoneyModal from '../components/AddMoneyModal.vue';
 import MerchantPayModal from '../components/MerchantPayModal.vue';
 
 
-library.add(faMoneyBillTransfer, faCartShopping, faPlus);
+library.add(faMoneyBillTransfer, faCartShopping, faPlus, faEye, faEyeSlash);
 
 export default {
   components: {

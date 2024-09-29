@@ -18,7 +18,7 @@
     />
 
   <div class="w-full">
-    <LandingPage />
+    <LandingPage @open-login="showLoginModal"/>
     <FooterComp />
   </div>
 </template>
