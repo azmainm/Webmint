@@ -7,10 +7,10 @@
       <p class="mt-4 font-sans text-xl px-4 text-gray-800">Seamless transfers and payments</p>
       <p class="font-sans text-xl px-4 font-medium text-blue-800">on. the. web</p>
       <div>
-        <button @click="goToTransferPage" class="mt-4 mr-4 bg-blue-900 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-md shadow-gray-300">
+        <button @click="goToTransferPage" class="mt-4 mr-4 bg-blue-900 hover:bg-pink-700 text-white font-medium py-3 px-6 rounded-md shadow-gray-300">
         Initiate Transaction
       </button>
-      <span><font-awesome-icon icon="fa-solid fa-money-bill-transfer" class="text-3xl text-blue-900 mb-2" /></span>
+      <span><font-awesome-icon icon="fa-solid fa-money-bill-transfer" class="text-3xl text-blue-900 mb-2 hover:text-pink-700" /></span>
       </div>
       
     </section>

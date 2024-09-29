@@ -1,15 +1,16 @@
 <template>
   <footer class="bg-gradient-to-r from-white to-pink-100">
     <div class="icon-links">
-      <a href="https://github.com/your-profile" target="_blank" rel="noopener noreferrer" class="hover:text-pink-700">
+      <a href="https://github.com/azmainm" target="_blank" rel="noopener noreferrer" class="hover:text-pink-700">
         <font-awesome-icon :icon="['fab', 'github']" size="2x" />
       </a>
-      <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="hover:text-pink-700">
+      <a href="https://linkedin.com/in/azmain-morshed/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-700">
         <font-awesome-icon :icon="['fab', 'linkedin']" size="2x"/>
       </a>
       <div class="cv-download">
-        <a href="/path/to/your-cv.pdf" download>
-          <button class="bg-blue-800 hover:bg-blue-600 ">Download CV</button>
+        <!-- Updated CV Download Button with target and rel attributes -->
+        <a href="https://drive.google.com/uc?export=download&id=1QKPPCGGeYQWREMhS-r6U8ShT4zOrchcr" target="_blank" rel="noopener noreferrer" download="Azmain_Morshed_CV.pdf">
+          <button class="bg-gray-900 hover:bg-pink-600">Grab my Resume <span><font-awesome-icon icon="fa-solid fa-download" class="text-xl text-white" /></span></button>
         </a>
       </div>
     </div>
@@ -20,9 +21,19 @@
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faDownload);
+
 export default {
-  name: "FooterComp"
+  name: "FooterComp",
+  components:{
+    FontAwesomeIcon,
+  },
 };
+
 </script>
 
 <style scoped>
@@ -54,10 +65,6 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
 }
 
 .developer-text {

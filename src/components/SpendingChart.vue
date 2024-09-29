@@ -1,101 +1,57 @@
+<!-- src/components/SpendingChart.vue -->
 <template>
-  <div class="w-full max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
-    <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Spending Chart</h2>
-    <!-- <BarChart :chartData="chartData" :options="chartOptions" /> -->
+  <div class="w-full sm:w-1/2 px-4 py-6">
+    <h3 class="text-lg font-medium text-gray-700 mb-4">Spending Chart</h3>
+    <Bar :data="chartData" :options="chartOptions"/>
   </div>
 </template>
 
 <script>
-// import BarChart from './BarChart.vue';
+import { Bar } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 export default {
-  components: {
-    // BarChart
-  },
+  components: { Bar },
   data() {
     return {
       chartData: {
-        labels: ['Food', 'Transport', 'Shopping', 'Entertainment', 'Health', 'Utilities'],
+        labels: ['2024-09-20', '2024-09-21', '2024-09-22', '2024-09-23'],
         datasets: [
           {
-            label: 'Spending in BDT',
-            data: [1200, 800, 1500, 500, 300, 1000], // Dummy data
-            backgroundColor: [
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(255, 159, 64, 0.6)'
-            ],
-            borderColor: [
-              'rgba(75, 192, 192, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 99, 132, 1)',
-              'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-          }
-        ]
+            label: 'Transfers',
+            backgroundColor: '#ec4899', // Pink color for Transfers
+            data: [500, 300, 400, 200],
+          },
+          {
+            label: 'Merchant Payments',
+            backgroundColor: '#196cd1', // Blue color for Merchant Payments
+            data: [200, 400, 300, 100],
+          },
+        ],
       },
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: {
-            display: true,
-            position: 'top',
-            labels: {
-              color: 'rgb(75, 75, 75)',
-              font: {
-                size: 14
-              }
-            }
-          },
-          title: {
-            display: true,
-            text: 'Spending Breakdown',
-            color: '#333',
-            font: {
-              size: 18
-            }
-          }
+          legend: { position: 'top' },
+          // title: { display: true, text: 'Spending Analysis' },
         },
         scales: {
-          x: {
-            grid: {
-              display: false
-            },
-            ticks: {
-              color: '#555',
-              font: {
-                size: 12
-              }
-            }
-          },
-          y: {
-            grid: {
-              borderDash: [5, 5],
-              color: '#ddd'
-            },
-            ticks: {
-              color: '#555',
-              font: {
-                size: 12
-              }
-            }
-          }
-        }
-      }
+          x: { title: { display: true, text: 'Date' } },
+          y: { title: { display: true, text: 'Amount (BDT)' } },
+        },
+      },
     };
-  }
+  },
 };
 </script>
 
 <style scoped>
+/* Basic styling for the chart container */
 .w-full {
-  width: 100%;
+  max-width: 600px;
+  height: 350px;
 }
 </style>

@@ -43,10 +43,15 @@
         </div>
       </div>
 
-      <!-- Additional Sections (Spending Chart and Transaction History) -->
+      <!-- Transaction History & Chart Section -->
       <div class="mt-12 w-full max-w-4xl mx-auto">
-        <TransactionHistory/>
-        <SpendingChart />
+        <TransactionHistory />
+
+        <!-- Charts Section -->
+        <div class="flex flex-col lg:flex-row items-center justify-between w-full">
+          <SpendingChart />
+          <AddMoneyChart />
+        </div>
       </div>
 
        <!-- Modals -->
@@ -64,6 +69,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMoneyBillTransfer, faCartShopping, faPlus } from '@fortawesome/free-solid-svg-icons';
 import NavbarLoggedIn from '../components/NavbarLoggedIn.vue';
 import SpendingChart from '../components/SpendingChart.vue';
+import AddMoneyChart from '../components/AddMoneyChart.vue';
 import TransactionHistory from '../components/TransactionHistory.vue';
 import TransferModal from '../components/TransferModal.vue';
 import AddMoneyModal from '../components/AddMoneyModal.vue';
@@ -76,6 +82,7 @@ export default {
   components: {
     NavbarLoggedIn,
     SpendingChart,
+    AddMoneyChart,
     TransactionHistory,
     TransferModal,
     AddMoneyModal,
