@@ -49,10 +49,10 @@
     fetchTransactions() {
   const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
-  // Filter transactions by type (transfer or payment)
+  // Filter transactions by purpose 
   const addTransactions = transactions.filter(t => t.purpose === 'Add Money');
 
-  // Group transfer transactions by date and sum the amounts
+  // Group transactions by date and sum the amounts
   const groupedAddTransactions = addTransactions.reduce((acc, t) => {
     const existingTransaction = acc.find(tx => tx.date === t.date);
     if (existingTransaction) {
@@ -65,7 +65,7 @@
 
   // Update chart data with transaction data
   this.chartData.labels = groupedAddTransactions.map(t => t.date);
-  this.chartData.datasets.data = groupedAddTransactions.map(t => t.amount);
+  this.chartData.datasets[0].data = groupedAddTransactions.map(t => t.amount);
 
   console.log('Chart data:', this.chartData);
     },
