@@ -43,7 +43,12 @@ export default {
           username:this.username,
           email: this.email,
           password: this.password,
+          balance: 10000,
         };
+
+        // Clear local storage before storing the new user's data
+        localStorage.clear();
+
         localStorage.setItem('user', JSON.stringify(user));  // Save user to local storage
 
         this.statusMessage = 'Signup successful! Please log in.';  // Success message

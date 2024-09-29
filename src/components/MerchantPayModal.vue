@@ -36,6 +36,14 @@ export default {
     payMerchant() {
       // Pay logic
       const storedUser = JSON.parse(localStorage.getItem('user'));
+      const balance = storedUser.balance;
+
+      // Check if the balance is less than the transfer amount
+      if (balance < parseFloat(this.amount)) {
+          this.message = 'Insufficient funds. Transfer failed.';
+          this.success = false;
+          return;
+  }
       // Check if the entered password matches the stored password
       if (storedUser && this.password !== storedUser.password) {
         this.message = 'Incorrect password. Payment failed.';
