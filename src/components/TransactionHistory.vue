@@ -1,18 +1,21 @@
 <!-- components/TransactionHistory.vue -->
 <template>
+  <h2 class="text-xl mb-4 font-bold text-gray-800 font-sans">Transaction History</h2>
   <div class="transaction-history border rounded-md shadow-md p-10 mb-10">
-    <h2 class="text-2xl mb-4 font-bold text-gray-800 font-sans">Transaction History</h2>
     <div class="transaction-row header">
+      <p class="font-medium purpose-column">Purpose</p>
       <p class="font-medium date-column">Date</p>
       <p class="font-medium amount-column">Amount</p>
-      <p class="font-medium purpose-column">Purpose</p>
     </div>
-    <div
-      v-for="(transaction, index) in transactions"
-      :key="transaction.id"
-      class="transaction-row"
-      :class="{'striped': index % 2 === 0}" 
-    >
+    <!-- Display the latest transactions from local storage at the top -->
+    <div v-for="(transaction, index) in localStorageTransactions" :key="transaction.id" class="transaction-row" :class="{'striped': index % 2 === 0}">
+      <p class="purpose-column">{{ transaction.purpose }}</p>
+      <p class="date-column">{{ transaction.date }}</p>
+      <p class="amount-column">৳ {{ transaction.amount }}</p>
+    </div>
+
+    <!-- Display the dummy data below the local storage transactions -->
+    <div v-for="(transaction, index) in dummyData" :key="transaction.id" class="transaction-row" :class="{'striped': (index + localStorageTransactions.length) % 2 === 0}">
       <p class="purpose-column">{{ transaction.purpose }}</p>
       <p class="date-column">{{ transaction.date }}</p>
       <p class="amount-column">৳ {{ transaction.amount }}</p>
@@ -24,7 +27,8 @@
 export default {
   data() {
     return {
-      transactions: [
+      localStorageTransactions:[],
+      dummyData: [
         { id: 1, date: '2024-09-01', amount: 1000, purpose: 'Transfer Money' },
         { id: 2, date: '2024-09-02', amount: 2000, purpose: 'Merchant Pay' },
         { id: 3, date: '2024-09-03', amount: 500, purpose: 'Utility Bill' },
@@ -33,6 +37,10 @@ export default {
         { id: 6, date: '2024-09-06', amount: 1300, purpose: 'Travel' },
       ],
     };
+  },
+  mounted() {
+    // Load transactions from local storage when the component is mounted
+    this.localStorageTransactions = JSON.parse(localStorage.getItem('transactions')) || [];
   },
 };
 </script>

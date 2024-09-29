@@ -45,25 +45,25 @@
 
       <!-- Transaction History & Chart Section -->
       <div class="mt-12 w-full max-w-4xl mx-auto">
-        <TransactionHistory />
+        <TransactionHistory :transactions="transactions" />
 
         <!-- Charts Section -->
         <div class="flex flex-col lg:flex-row items-center justify-between w-full">
-          <SpendingChart />
+          <SpendingChart :newTransfer="newTransfer" />
           <AddMoneyChart />
         </div>
       </div>
 
        <!-- Modals -->
-       <TransferModal :visible="showTransferModal" @close="closeTransferModal" />
-      <AddMoneyModal :visible="showAddMoneyModal" @close="closeAddMoneyModal" />
-      <MerchantPayModal :visible="showMerchantPayModal" @close="closeMerchantPayModal" />
+       <TransferModal :visible="showTransferModal" @close="closeTransferModal" @transfer-success="handleTransferSuccess"  />
+      <AddMoneyModal :visible="showAddMoneyModal" @close="closeAddMoneyModal" @add-success="handleAddSuccess"/>
+      <MerchantPayModal :visible="showMerchantPayModal" @close="closeMerchantPayModal" @payment-success="handlePaymentSuccess" />
     </div>
   </div>
 </template>
 
 <script>
-// Import FontAwesome components and icons
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMoneyBillTransfer, faCartShopping, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -75,7 +75,7 @@ import TransferModal from '../components/TransferModal.vue';
 import AddMoneyModal from '../components/AddMoneyModal.vue';
 import MerchantPayModal from '../components/MerchantPayModal.vue';
 
-// Add the required icons to the FontAwesome library
+
 library.add(faMoneyBillTransfer, faCartShopping, faPlus);
 
 export default {
@@ -87,18 +87,41 @@ export default {
     TransferModal,
     AddMoneyModal,
     MerchantPayModal,
-    FontAwesomeIcon, // Register FontAwesome component
+    FontAwesomeIcon, 
   },
   data() {
     return {
-      userName: 'Azmain Morshed',
+      userName: '',  
       balance: 10000,
       showTransferModal: false,
       showAddMoneyModal: false,
       showMerchantPayModal: false,
+      transactions:[],
+      newTransfer:null,
+      newPayment:null,
+      newAdd:null,
     };
   },
+  mounted() {
+    this.fetchUserName();  
+  },
   methods: {
+    handleTransferSuccess(newTransaction) {
+      this.transactions.unshift(newTransaction); // Add the new transaction to the beginning of the array
+      this.newTransfer = newTransaction; // Update the newTransfer property for the SpendingChart component
+      this.newPayment = newTransaction;
+      this.newAdd = newTransaction;
+    },
+    fetchUserName() {
+      const storedUser = JSON.parse(localStorage.getItem('user'));  
+      if (storedUser && storedUser.fullname) {
+        this.userName = storedUser.fullname;  
+      }
+    },
+    mounted() {
+    // Load transactions from local storage when the component is mounted
+    this.transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+  },
     openTransferModal() {
       this.showTransferModal = true;
     },

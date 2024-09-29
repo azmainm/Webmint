@@ -5,6 +5,9 @@
       <input v-model="amount" type="number" placeholder="Add Amount" class="input mb-4"/>
       <input v-model="password" type="password" placeholder="Password" class="input mb-4"/>
       <button @click="addMoney" class="btn bg-blue-800 hover:bg-blue-600 text-white w-full py-2 rounded">Add Money</button>
+      <p v-if="message" :class="{'text-green-500': success, 'text-red-500': !success}" class="mt-4 text-center">
+        {{ message }}
+      </p>
       <button @click="$emit('close')" class="btn text-blue-800 w-full py-2 mt-4 text-sm">Close</button>
     </div>
   </div>
@@ -17,11 +20,47 @@ export default {
     return {
       amount: '',
       password: '',
+      message: '', // Message to display
+      success: false, // Flag to indicate success or failure
     };
   },
   methods: {
     addMoney() {
-      // Add money logic
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+
+      // Check if the entered password matches the stored password
+      if (storedUser && this.password !== storedUser.password) {
+        this.message = 'Incorrect password. Add Money failed.';
+        this.success = false;
+        return;
+      }
+
+      // If password matches, create a new transaction object
+      const newTransaction = {
+        id: Date.now(), // Unique ID based on timestamp
+        date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
+        amount: parseFloat(this.amount),
+        purpose: 'Add Money',
+      };
+
+      // Emit the new transaction to the parent component
+      this.$emit('add-success', newTransaction);
+
+      // Store the transaction in local storage
+      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+      transactions.push(newTransaction);
+      localStorage.setItem('transactions', JSON.stringify(transactions));
+
+
+      // Clear form fields after successful transfer
+      this.recipient = '';
+      this.amount = '';
+      this.purpose = '';
+      this.password = '';
+
+      this.message = 'Add Money successful!';
+      this.success = true; // Indicate success
+      //this.$emit('close');
     },
   },
 };

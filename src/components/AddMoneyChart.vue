@@ -1,7 +1,7 @@
 <!-- src/components/AddMoneyChart.vue -->
 <template>
     <div class="w-full sm:w-1/2 px-4 py-6">
-      <h3 class="text-lg font-medium text-gray-700 mb-4">Add Money Chart</h3>
+      <h2 class="text-lg mb-4 font-bold text-gray-800 font-sans">Add Money Chart</h2>
       <Bar :data="chartData" :options="chartOptions"/>
     </div>
   </template>

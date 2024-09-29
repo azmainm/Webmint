@@ -1,7 +1,7 @@
 <!-- src/components/SpendingChart.vue -->
 <template>
   <div class="w-full sm:w-1/2 px-4 py-6">
-    <h3 class="text-lg font-medium text-gray-700 mb-4">Spending Chart</h3>
+    <h2 class="text-lg mb-4 font-bold text-gray-800 font-sans">Spending Chart</h2>
     <Bar :data="chartData" :options="chartOptions"/>
   </div>
 </template>
@@ -13,6 +13,7 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 export default {
+  props: ['newTransfer'],
   components: { Bar },
   data() {
     return {
@@ -45,6 +46,17 @@ export default {
       },
     };
   },
+  // watch: {
+  //   newTransfer(newVal) {
+  //     if (newVal) {
+  //       this.chartData.labels.push(newVal.date);
+  //       this.chartData.datasets[0].data.push(newVal.amount);
+
+  //       this.chartData = {this.chartData };
+  //     }
+  //   },
+  // },
+
 };
 </script>
 
@@ -55,3 +67,5 @@ export default {
   height: 350px;
 }
 </style>
+
+

@@ -7,8 +7,13 @@
         <option v-for="merchant in merchants" :key="merchant">{{ merchant }}</option>
       </select>
       <input v-model="amount" type="number" placeholder="Payment Amount" class="input mb-4"/>
+      <input v-model="purpose" type="text" placeholder="Purpose" class="input mb-4"/>
       <input v-model="password" type="password" placeholder="Password" class="input mb-4"/>
       <button @click="payMerchant" class="btn bg-blue-800 hover:bg-blue-600 text-white w-full py-2 rounded">Pay</button>
+      <!-- Message Display -->
+      <p v-if="message" :class="{'text-green-500': success, 'text-red-500': !success}" class="mt-4 text-center">
+        {{ message }}
+      </p>
       <button @click="$emit('close')" class="btn text-blue-800 w-full py-2 mt-4 text-sm">Close</button>
     </div>
   </div>
@@ -23,11 +28,46 @@ export default {
       merchants: ['Unimart', 'KFC', 'DESCO'],
       amount: '',
       password: '',
+      message:'',
+      success:false,
     };
   },
   methods: {
     payMerchant() {
       // Pay logic
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      // Check if the entered password matches the stored password
+      if (storedUser && this.password !== storedUser.password) {
+        this.message = 'Incorrect password. Payment failed.';
+        this.success = false;
+        return;
+      }
+      // If password matches, create a new transaction object
+      const newTransaction = {
+        id: Date.now(), // Unique ID based on timestamp
+        date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
+        amount: parseFloat(this.amount),
+        purpose: this.purpose || 'Merchant Payment',
+      };
+
+      // Emit the new transaction to the parent component
+      this.$emit('payment-success', newTransaction);
+
+      // Store the transaction in local storage
+      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+      transactions.push(newTransaction);
+      localStorage.setItem('transactions', JSON.stringify(transactions));
+
+
+      // Clear form fields after successful transfer
+      this.recipient = '';
+      this.amount = '';
+      this.purpose = '';
+      this.password = '';
+
+      this.message = 'Payment successful!';
+      this.success = true; // Indicate success
+      //this.$emit('close');
     },
   },
 };
