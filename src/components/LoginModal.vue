@@ -80,6 +80,7 @@ export default {
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  margin: 0 auto;
 }
 
 .modal-content {

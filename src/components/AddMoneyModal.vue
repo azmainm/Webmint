@@ -80,6 +80,7 @@ export default {
     justify-content: center;
     align-items: center;
     z-index: 9999; /* Ensures modal stays on top */
+    margin: 0 auto;
   }
   
   .modal-content {
