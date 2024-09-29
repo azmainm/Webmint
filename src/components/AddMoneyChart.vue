@@ -2,7 +2,7 @@
 <template>
     <div class="w-full sm:w-1/2 px-4 py-6">
       <h2 class="text-lg mb-4 font-bold text-gray-800 font-sans">Add Money Chart</h2>
-      <Bar :data="chartData" :options="chartOptions"/>
+      <Bar :key="chartData.labels.length" :data="chartData" :options="chartOptions"/>
     </div>
   </template>
   
@@ -17,12 +17,12 @@
     data() {
       return {
         chartData: {
-          labels: ['2024-09-20', '2024-09-21', '2024-09-22', '2024-09-23'],
+          labels: [],
           datasets: [
             {
               label: 'Amount Added',
               backgroundColor: '#07943b', // Green color for Add Money
-              data: [1000, 500, 700, 900],
+              data: [],
             },
           ],
         },
@@ -40,8 +40,42 @@
         },
       };
     },
-  };
-  </script>
+
+        watch: {
+          '$store.state.transactions': 'fetchTransactions',
+        },
+        
+        methods: {
+    fetchTransactions() {
+  const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+  // Filter transactions by type (transfer or payment)
+  const addTransactions = transactions.filter(t => t.purpose === 'Add Money');
+
+  // Group transfer transactions by date and sum the amounts
+  const groupedAddTransactions = addTransactions.reduce((acc, t) => {
+    const existingTransaction = acc.find(tx => tx.date === t.date);
+    if (existingTransaction) {
+      existingTransaction.amount += t.amount;
+    } else {
+      acc.push({ date: t.date, amount: t.amount });
+    }
+    return acc;
+  }, []);
+
+  // Update chart data with transaction data
+  this.chartData.labels = groupedAddTransactions.map(t => t.date);
+  this.chartData.datasets.data = groupedAddTransactions.map(t => t.amount);
+
+  console.log('Chart data:', this.chartData);
+    },
+
+    },
+mounted() {
+    this.fetchTransactions();
+  },
+}
+</script>
   
   <style scoped>
   /* Basic styling for the chart container */

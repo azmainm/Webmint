@@ -1,3 +1,4 @@
+<!--components/MerchantPayModal.vue-->
 <template>
   <div v-if="visible" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center backdrop-blur-sm">
     <div class="modal-content bg-white p-8 rounded-lg shadow-lg w-96">
@@ -56,6 +57,7 @@ export default {
         date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
         amount: parseFloat(this.amount),
         purpose: this.purpose || 'Merchant Payment',
+        type: 'Merchant Payment',
       };
 
       // Emit the new transaction to the parent component

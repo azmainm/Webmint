@@ -55,6 +55,7 @@ export default {
         date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
         amount: parseFloat(this.amount),
         purpose: this.purpose || 'Transfer Money',
+        type: 'Transfer Money',
       };
 
       // Emit the new transaction to the parent component
@@ -63,6 +64,7 @@ export default {
       // Store the transaction in local storage
       const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
       transactions.push(newTransaction);
+      console.log('Transactions:', transactions);
       localStorage.setItem('transactions', JSON.stringify(transactions));
 
 

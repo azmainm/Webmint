@@ -1,3 +1,4 @@
+<!--views/TransferPage.vue-->
 <template>
   <div>
     <NavbarLoggedIn />
@@ -31,7 +32,7 @@
           </h2>
         </div>
         <!-- Info Modal -->
-  <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-20">
+  <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div class="modal-content py-4 text-left px-6">
         <div class="flex justify-between items-center pb-3">
           <p class="text-2xl font-bold text-blue-800">Note</p>
@@ -42,7 +43,7 @@
           </button>
         </div>
         <p>Some of the data displayed in the transaction history and the charts are sample entries intended for demonstration purposes. </p><br>
-          <p class='font-bold text-pink-800'>However, you are welcome to conduct actual transactions, which will be reflected in your transaction history, charts, and balance, as all features are fully functional.</p>
+          <p class='font-bold text-pink-800'>However, you are welcome to conduct actual transactions, which will be reflected in your balance, transaction history and charts as all features are fully functional.</p>
       </div>
     
   </div>
@@ -84,11 +85,13 @@
 
         <!-- Charts Section -->
         <div class="flex flex-col lg:flex-row items-center justify-between w-full">
-          <SpendingChart :newTransfer="newTransfer" />
+          <SpendingChart 
+          ::newTransfer="newTransfer"
+          :newPayment="newPayment" 
+          />
           <AddMoneyChart />
         </div>
       </div>
-      <p>Note: </p>
 
        <!-- Modals -->
        <TransferModal :visible="showTransferModal" @close="closeTransferModal" @transfer-success="handleTransferSuccess"  />
